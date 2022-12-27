@@ -5,7 +5,11 @@ import { axiosClient } from './apiClient.js';
 //     return axiosClient.get('/product');
 // }
 
-export function login(data){
-    return axiosClient.post('/login', data);
+export function signin(data){
+    return axiosClient.post('/login', data)
+}
+
+export function register(data){
+    return axiosClient.post('/register', data)
 }
     

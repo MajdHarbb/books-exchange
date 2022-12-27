@@ -25,6 +25,7 @@ class AuthController extends Controller
                 'last_name' => 'required',
                 'username' => 'required',
                 'email' => 'required|email|unique:users,email',
+                'phone' => 'required|unique:users',
                 'password' => 'required'
             ]);
 
@@ -42,13 +43,17 @@ class AuthController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'username' => $request->username,
+                'phone' => $request->phone,
+                'district' => $request->district,
+                'city' => $request->city,
                 'password' => Hash::make($request->password)
             ]);
 
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+                'token' => $user->createToken("API TOKEN")->plainTextToken,
+                'user' => $user
             ], 200);
 
         } catch (\Throwable $th) {
@@ -92,6 +97,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'status' => true,
+                'user' => $user,
                 'message' => 'User Logged In Successfully',
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);

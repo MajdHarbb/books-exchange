@@ -15,7 +15,7 @@ export const axiosClient = axios.create({
     function (error) {
       let res = error.response;
       if (res.status == 401) {
-        window.location.href = `http://127.0.0.1:8000/`;
+        // window.location.href = `http://127.0.0.1:8000/`;
       }
       console.error(`Looks like there was a problem. Status Code: ` + res.status);
       return Promise.reject(error);
