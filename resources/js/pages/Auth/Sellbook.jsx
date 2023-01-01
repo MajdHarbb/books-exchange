@@ -6,10 +6,10 @@ function Sellbook() {
     const [bookTitle, setbookTitle] = useState("");
     const [authorName, setauthorName] = useState("");
     const [publisher, setPublisher] = useState("");
-    const [educationYear, seteducationYear] = useState("First Year");
+    const [educationYear, seteducationYear] = useState("Grade One");
     const [school, setSchool] = useState("Engineering");
-    const [className, setClassName] = useState("");
-    const [category, setcategory] = useState("Education");
+    const [className, setClassName] = useState("class");
+    const [category, setcategory] = useState("Mathematics");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("Upload Book Image (PNG, JPEG, JPG)");
     const [imageBase, setImageBase] = useState("");
@@ -110,7 +110,7 @@ function Sellbook() {
                         </div>
                     </div>
                     <div className="form-row">
-                        <div className="form-group col-md-4">
+                        <div className="form-group col-md-6">
                             <label htmlFor="eduction-year">Education Year</label>
                             <select
                                 id="eduction-year"
@@ -119,29 +119,34 @@ function Sellbook() {
                                 defaultValue="First Year"
                                 onChange={(e) => seteducationYear(e.target.value)}
                             >
-                                <option>First Year</option>
-                                <option>Second Year</option>
-                                <option>Third Year</option>
+                                <option>Grade One</option>
+                                <option>Grade Two</option>
+                                <option>Grade Three</option>
+                                <option>Grade Four</option>
+                                <option>Grade Five</option>
+                                <option>Grade Six</option>
+                                <option>Grade Seven</option>
+                                <option>Grade Eight</option>
+                                <option>Grade Nine</option>
+                                <option>Grade Ten</option>
+                                <option>Grade Eleven</option>
+                                <option>Grade Twelve</option>
+                                <option>University First Year</option>
+                                <option>University Second Year</option>
+                                <option>University Third Year</option>
                             </select>
                         </div>
-                        <div className="form-group col-md-4">
+                        <div className="form-group col-md-6">
                             <label htmlFor="school">School</label>
-                            <select
-                                id="school"
-                                required
+                            <input
+                                type="text"
                                 className="form-control"
-                                defaultValue="First Year"
+                                id="school"
                                 onChange={(e) => setSchool(e.target.value)}
-                            >
-                                <option>Engineering</option>
-                                <option>Pharmacy</option>
-                                <option>Education</option>
-                                <option>Business</option>
-                                <option>Arts and Science</option>
-
-                            </select>
+                                required
+                            />
                         </div>
-                        <div className="form-group col-md-4">
+                        {/* <div className="form-group col-md-4">
                             <label htmlFor="class">Class</label>
                             <input
                                 type="text"
@@ -150,7 +155,7 @@ function Sellbook() {
                                 onChange={(e) => setClassName(e.target.value)}
                                 required
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="custom-file">
                         <input
@@ -171,16 +176,23 @@ function Sellbook() {
                                 id="gategory"
                                 required
                                 className="form-control"
-                                defaultValue="Education"
+                                defaultValue="Mathematics"
                                 onChange={(e) => setcategory(e.target.value)}
                             >
-                                <option>Education</option>
-                                <option>Sci-Fi</option>
-                                <option>Beqaa</option>
-                                <option>Mount Lebanon</option>
-                                <option>Nabatieh</option>
-                                <option>North</option>
-                                <option>South</option>
+                                <option>Mathematics</option>
+                                <option>Physics</option>
+                                <option>Chemistry</option>
+                                <option>Biology</option>
+                                <option>History</option>
+                                <option>Geography</option>
+                                <option>Philosophy</option>
+                                <option>Sociology</option>
+                                <option>Emonomics</option>
+                                <option>Arabic</option>
+                                <option>English</option>
+                                <option>Computer</option>
+
+
                             </select>
                         </div>
                         <div className="form-group col-md-6">

@@ -98,10 +98,10 @@ function PurchaseBook() {
                                     <InfoIcon />
                                     {`${book.category}, School of ${book.school} - ${book.education_year}`}
                                 </p>
-                                <p className="card-text text-capitalize text-secondary font-italic text-sm mb-1">
+                                {/* <p className="card-text text-capitalize text-secondary font-italic text-sm mb-1">
                                     <InfoIcon />
                                     {`${book.class}`}
-                                </p>
+                                </p> */}
                                 {JSON.parse(localStorage.getItem("user")).id !=
                                 book.seller_id ? (
                                     <div className="d-flex align-items-center mb-4 pt-2">

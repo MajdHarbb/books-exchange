@@ -64,9 +64,9 @@ function Books() {
                                             <InfoIcon />
                                             {`${book.category}, School of ${book.school} - ${book.education_year}`}
                                         </p>
-                                        {JSON.parse(
+                                        {(localStorage.getItem("user") != null && JSON.parse(
                                             localStorage.getItem("user")
-                                        ).id == book.seller_id ? (
+                                        ).id == book.seller_id) ? (
                                             <Link
                                                 className="btn btn-primary"
                                                 to={`/purchase-book/` + book.book_id}
