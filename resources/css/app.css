@@ -1,0 +1,48 @@
+.link {
+    color: white;
+}
+.link-underline {
+    text-decoration: none !important;
+}
+.login-btn:hover{
+    background-color: white;
+}
+.book-image{
+    height: 300px;
+}
+.card-sk{
+    border:none;
+    width:18rem;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.inner-card{
+    height:20px;
+    background-color:#eee;
+}
+
+.card-1{
+    
+    height:200px;
+    background-color:#eee;
+}
+
+.card-2{
+ height:130px;   
+}
+.card-text{
+    margin: 0px;
+}
+.white-text{ 
+    color: white;
+}
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: .9;
+    }
+}

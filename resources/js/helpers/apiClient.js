@@ -8,9 +8,11 @@ export const axiosClient = axios.create({
     }
   });
 
-  axiosClient.interceptors.response.use(
-    function (response) {
-      return response;
+  axiosClient.interceptors.request.use(
+    function (config) {
+      const token = localStorage.getItem('token');
+      config.headers.Authorization =  token ? `Bearer ${token}` : '';
+      return config;
     }, 
     function (error) {
       let res = error.response;

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BooksController;
+use App\Http\Controllers\NotificationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,12 +15,19 @@ use App\Http\Controllers\Api\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+//register and login API's
 Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
 
+//get all books API (public API can be accessed without token (user can be signed out)) 
+Route::get('/auth/get-books', [BooksController::class, 'getBooks']);
+Route::post('/auth/buy-book', [BooksController::class, 'purchaseBook']);
 
-// Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
+//authenticated API's (user have to be logged in)
+Route::post('/auth/create-book', [BooksController::class, 'createBook'])->middleware('auth:sanctum');
+Route::post('/auth/get-book', [BooksController::class, 'getSingleBook'])->middleware('auth:sanctum');
+Route::post('/auth/buy-book', [BooksController::class, 'purchaseBook'])->middleware('auth:sanctum');
+Route::post('/auth/get-purchased-books', [BooksController::class, 'getPurchasedBook'])->middleware('auth:sanctum');
+Route::post('/auth/get-my-books', [BooksController::class, 'getMyBooks'])->middleware('auth:sanctum');
+Route::post('/auth/get-my-notifications', [NotificationController::class, 'getUserNotifications'])->middleware('auth:sanctum');
+

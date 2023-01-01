@@ -1,16 +1,35 @@
 import './bootstrap'
 import '../css/app.css'
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Login'
-import { router } from './router/index.jsx'
-import Navbar from './components/Navbar'
+import { Routes, Route } from "react-router-dom";
+import Login from './pages/Login'
+import Landing from './Landing'
+import Signup from './pages/Signup'
+import Home from './pages/Auth/Home'
+import ProtectedRoutes from './ProtectedRoutes'
+import Sellbook from './pages/Auth/Sellbook';
+import Mybooks from './pages/Auth/Mybooks';
+import PurchaseBook from './pages/Auth/PurchaseBook';
+import Purchased from './pages/Auth/Purchased';
+import Notifications from './pages/Auth/Notifications';
 function app() {
   return (
-    <React.StrictMode>
-        <Navbar />
-        <RouterProvider router={router} />
-    </React.StrictMode>
+    <>
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Signup />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path='/home' element={<Home />} />
+          <Route path='/sell-books' element={<Sellbook />} />
+          <Route path='/my-books' element={<Mybooks />} />
+          <Route path='/notifications' element={<Notifications />} />
+          <Route path='/purchased' element={<Purchased />} />
+          <Route path="/purchase-book/:bookId" element={<PurchaseBook />} />
+        </Route>
+        
+      </Routes>
+    </>
   )
 }
 

@@ -44,6 +44,11 @@ return [
             'throw' => false,
         ],
 
+        'books' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/books',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

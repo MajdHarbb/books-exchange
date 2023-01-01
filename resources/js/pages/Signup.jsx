@@ -1,7 +1,9 @@
 import React from "react";
 import { register } from "../helpers/api.js";
 import { useState } from "react";
-
+import Navbar from "../components/Navbar.jsx";
+import { setUserData } from "../helpers/functions.jsx";
+import { Navigate } from "react-router-dom";
 function Signup() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -9,10 +11,10 @@ function Signup() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [district, setDistrict] = useState("");
+    const [district, setDistrict] = useState("Beirut");
     const [city, setCity] = useState("");
     const [phone, setPhone] = useState("");
-
+    const [auth, setAuth] = useState(false);
 
     const handleSubmit = async (event) => {
         // Prevent page reload
@@ -27,17 +29,26 @@ function Signup() {
                 password: password,
                 password_confirm: passwordConfirm,
                 district: district,
-                city: city
+                city: city,
             });
-            console.log(res);
+            setUserData(res.data);
+            setAuth(true);
+            // console.log(res);
         } catch (error) {
             console.log(error);
         }
     };
+    if (auth) {
+        return <Navigate replace to="/home" />;
+    }
     return (
         <div>
+            <Navbar />
             <form className="row" onSubmit={handleSubmit}>
                 <div className="mx-auto">
+                    <div className="mx-auto text-center my-3">
+                        <h2>Sell Your Books</h2>
+                    </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="first-name">First Name</label>
@@ -151,7 +162,7 @@ function Signup() {
                         </div>
                     </div>
                     <button type="submit" className="btn btn-primary">
-                        Sign in
+                        Register
                     </button>
                 </div>
             </form>

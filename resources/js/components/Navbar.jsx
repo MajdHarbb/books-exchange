@@ -1,7 +1,7 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import _ from "lodash";
 function Navbar() {
-    
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,16 +50,16 @@ function Navbar() {
                                 </a>
                                 <a className="dropdown-item" href="#">
                                     Classics
-                                </a> 
+                                </a>
                                 <a className="dropdown-item" href="#">
                                     Crime
-                                </a> 
+                                </a>
                                 <a className="dropdown-item" href="#">
                                     History
-                                </a> 
+                                </a>
                                 <a className="dropdown-item" href="#">
                                     Poetry
-                                </a>                                
+                                </a>
                             </div>
                         </li>
                         {/* <li className="nav-item">
@@ -67,18 +67,32 @@ function Navbar() {
                         </li> */}
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <input
-                            className="form-control mr-sm-2"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
-                        <button
-                            className="btn btn-outline-success my-2 my-sm-0"
-                            type="submit"
-                        >
-                            Search
-                        </button>
+                        <div>
+                            <Link
+                                role="button"
+                                className="btn btn-outline-primary mx-2 my-sm-0"
+                                to="/register"
+                            >
+                                Register
+                            </Link>
+                            <Link
+                                role="button"
+                                className="btn btn-primary active"
+                                to="/login"
+                            >
+                                Login
+                            </Link>
+                        </div>
+                        {/* {
+                            _.isNil(window.localStorage.getItem('user')) ? 
+                            <div>
+                                <Link role="button" className="btn btn-outline-primary mx-2 my-sm-0" to="register">Register</Link>
+                                <Link role="button" className="btn btn-primary active" to="login">Login</Link>
+                            </div> 
+                            :
+                            <button onClick={removeUser} className="btn btn-outline-primary mx-2 my-sm-0" to="register">Log out</button>
+
+                        } */}
                     </form>
                 </div>
             </nav>
