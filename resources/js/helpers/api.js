@@ -40,4 +40,12 @@ export async function getMyBooks(data){
 export async function getMyNotifications(data){
     return await axiosClient.post('/get-my-notifications', data)
 }
+
+export async function editUserInfo(data){
+    return await axiosClient.post('/edit-user-info', data)
+}
+
+export async function editPassword(data){
+    return await axiosClient.post('/edit-password', data)
+}
     

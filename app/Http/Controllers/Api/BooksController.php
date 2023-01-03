@@ -54,6 +54,7 @@ class BooksController extends Controller
                 'category' => $request->category,
                 'school' => $request->school,
                 'class' => $request->class,
+                'education_year' => $request->education_year,
                 'status' => $request->status,
             ]);
 

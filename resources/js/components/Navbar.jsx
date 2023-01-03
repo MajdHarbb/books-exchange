@@ -5,9 +5,11 @@ function Navbar() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">
-                    Senior
-                </a>
+                <Link
+                    role="button"
+                    to="/" className="navbar-brand">
+                    <img src='logo-nobg-cr.png' height="45" width="100" />
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -25,16 +27,23 @@ function Navbar() {
                 >
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#">
+                            <Link
+                                role="button"
+                                className="nav-link"
+                                to="/"
+                            >
+                                Home<span className="sr-only"></span>
+                            </Link>
+                            {/* <a className="nav-link" href="#">
                                 Home <span className="sr-only"></span>
-                            </a>
+                            </a> */}
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link" href="#">
                                 Link
                             </a>
-                        </li>
-                        <li className="nav-item dropdown">
+                        </li> */}
+                        {/* <li className="nav-item dropdown">
                             <a
                                 className="nav-link dropdown-toggle"
                                 href="#"
@@ -61,7 +70,7 @@ function Navbar() {
                                     Poetry
                                 </a>
                             </div>
-                        </li>
+                        </li> */}
                         {/* <li className="nav-item">
                             <a className="nav-link disabled">Disabled</a>
                         </li> */}

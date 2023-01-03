@@ -109,4 +109,66 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    public function editUserInfo(Request $request) {
+        try {
+            $edit_user = User::where('id', $request->user_id)->update(array(
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'username' => $request->username,
+                'phone' => $request->phone,
+                'district' => $request->district,
+                'city' => $request->city,
+            ));
+            $user = User::where('id', $request->user_id)->first();
+            return response()->json([
+                'status' => true,
+                'user' => $user,
+                'message' => 'User Logged In Successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+        
+    }
+    
+    public function changePassword(Request $request) {
+        try {
+
+            $user = User::where('id', $request->user_id)->first();
+
+            if(!Hash::check($request->password, $user->password)){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Email & Password does not match with our record.',
+                    "old" => $user->password,
+                    "new" => $request->password,
+                ], 401);
+            }
+            
+            $edit_user = User::where('id', $request->user_id)->update(array(
+                'password' => Hash::make($request->new_password)
+            ));
+
+            $user = User::where('id', $request->user_id)->first();
+            
+            return response()->json([
+                'status' => true,
+                'user' => $user,
+                'message' => 'User Logged In Successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+        
+    }
 }

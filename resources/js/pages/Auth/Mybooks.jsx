@@ -29,12 +29,29 @@ function Mybooks() {
     }, []);
     return (
         <div>
-            <div className="mx-auto text-center my-3">
-                <h2>Books List</h2>
+          <div className="container-fluid">
+                <div className="row p-5">
+                    <div className="col-lg-12">
+                        <nav className="breadcrumb bg-light">
+                            <span className="breadcrumb-item text-dark" href="#">
+                                Home
+                            </span>
+                            {/* <a className="breadcrumb-item text-dark" href="#">
+                                Shop
+                            </a> */}
+                            <span className="breadcrumb-item active">
+                              {JSON.parse(localStorage.getItem("user")).first_name}'s Books
+                            </span>
+                        </nav>
+                    </div>
+                </div>
             </div>
+            {/* <div className="mx-auto text-center my-3">
+                <h2>Books List</h2>
+            </div> */}
             {!loading ? (
                 <div className="container-fluid">
-                    <div className="row d-flex mx-5 mt-5 justify-content-between">
+                    <div className="row d-flex mx-5 justify-content-between">
                         {books.map((book) => {
                             return (
                                 <div

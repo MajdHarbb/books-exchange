@@ -54,12 +54,30 @@ function PurchaseBook() {
             {loading ? (
                 <Loading />
             ) : (
-                <div className="container-fluid pb-5 my-5">
-                    <div className="row">
-                    <div className="mx-auto">
-                        <h2 className="mx-auto">Purchase Book</h2>
+                <div className="container-fluid pb-5">
+                    <div className="row p-5">
+                        <div className="col-lg-12">
+                            <nav className="breadcrumb bg-light">
+                                <span
+                                    className="breadcrumb-item text-dark"
+                                    href="#"
+                                >
+                                    Home
+                                </span>
+                                {/* <a className="breadcrumb-item text-dark" href="#">
+                                Shop
+                            </a> */}
+                                <span className="breadcrumb-item active">
+                                    Purchase Book
+                                </span>
+                            </nav>
+                        </div>
                     </div>
-                    </div>
+                    {/* <div className="row">
+                        <div className="mx-auto">
+                            <h2 className="mx-auto">Purchase Book</h2>
+                        </div>
+                    </div> */}
                     <div className="row px-xl-5 mt-2">
                         <div className="col-lg-5 mb-30">
                             <div>

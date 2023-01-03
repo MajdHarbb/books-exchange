@@ -4,6 +4,9 @@ import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import PersonIcon from '@mui/icons-material/Person';
+import HttpsIcon from '@mui/icons-material/Https';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 function AuthNav() {
     const [auth, setAuth] = useState(true);
@@ -17,15 +20,11 @@ function AuthNav() {
     return (
         <div>
             <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
-                <a className="navbar-brand" href="#">
-                    <img
-                        src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/logo_white.png"
-                        width={30}
-                        height={30}
-                        alt="logo"
-                    />
-                    Books Exchange
-                </a>
+                <Link
+                    role="button"
+                    to="/home" className="navbar-brand">
+                    <img src='logo-nobg-cr.png' height="45" width="100" />
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -81,14 +80,13 @@ function AuthNav() {
                                     className="dropdown-menu dropdown-menu-right"
                                     aria-labelledby="navbarDropdownMenuLink"
                                 >
-                                    <a className="dropdown-item" href="#">
+                                    {/* <a className="dropdown-item" href="#">
                                         Dashboard
-                                    </a>
-                                    <a className="dropdown-item" href="#">
-                                        Edit Profile
-                                    </a>
+                                    </a> */}
+                                    <Link className="dropdown-item" to="edit-profile"><PersonIcon/> Edit Profile Info <span className="sr-only">(current)</span></Link>
+                                    <Link className="dropdown-item" to="change-password"><HttpsIcon/> Change Password <span className="sr-only">(current)</span></Link>
                                     <a className="dropdown-item" href="#" onClick={removeUser}>
-                                        Log Out
+                                       <ExitToAppIcon/> Log Out
                                     </a>
                                 </div>
                             </li>

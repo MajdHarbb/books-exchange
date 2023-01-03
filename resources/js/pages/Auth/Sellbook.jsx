@@ -72,11 +72,25 @@ function Sellbook() {
     }
     return (
         <div>
-            <form className="row mt-5" onSubmit={handleSubmit}>
-                <div className="col-md-6 col-lg-6 col-sm-8 col-xs-8 mx-auto">
-                    <div className="mx-auto text-center">
-                        <h2>Sell Your Books</h2>
+            <div className="container-fluid">
+                <div className="row p-5">
+                    <div className="col-lg-12">
+                        <nav className="breadcrumb bg-light">
+                            <span className="breadcrumb-item text-dark" href="#">
+                                Home
+                            </span>
+                            {/* <a className="breadcrumb-item text-dark" href="#">
+                                Shop
+                            </a> */}
+                            <span className="breadcrumb-item active">
+                                Sell Book
+                            </span>
+                        </nav>
                     </div>
+                </div>
+            </div>
+            <form className="row" onSubmit={handleSubmit}>
+                <div className="col-md-12 col-lg-11 col-sm-8 col-xs-8 mx-auto">
                     <div className="form-row">
                         <div className="form-group col-md-12">
                             <label htmlFor="book-name">Book Title</label>

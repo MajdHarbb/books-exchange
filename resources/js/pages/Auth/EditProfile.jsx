@@ -1,23 +1,20 @@
 import React from "react";
-import { register } from "../helpers/api.js";
-import { useState } from "react";
-import Navbar from "../components/Navbar.jsx";
-import { setUserData } from "../helpers/functions.jsx";
+import { register } from "../../helpers/api.js";
+import { useState, useEffect } from "react";
+import { setUserData } from "../../helpers/functions.jsx";
 import { Navigate } from "react-router-dom";
-import AlertDialog from "../components/AlertDialog.jsx";
-function Signup() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [district, setDistrict] = useState("Beirut");
-    const [city, setCity] = useState("");
-    const [phone, setPhone] = useState("");
-    const [auth, setAuth] = useState(false);
-    
-    const [error, setError] = useState("Failed to register")
+import { editUserInfo } from "../../helpers/api"
+import AlertDialog from "../../components/AlertDialog.jsx";
+function EditProfile() {
+    const [firstName, setFirstName] = useState(JSON.parse(localStorage.getItem("user")).first_name);
+    const [lastName, setLastName] = useState(JSON.parse(localStorage.getItem("user")).last_name);
+    const [email, setEmail] = useState(JSON.parse(localStorage.getItem("user")).email);
+    const [username, setUsername] = useState(JSON.parse(localStorage.getItem("user")).district);
+    const [district, setDistrict] = useState(JSON.parse(localStorage.getItem("user")).city);
+    const [city, setCity] = useState(JSON.parse(localStorage.getItem("user")).city);
+    const [phone, setPhone] = useState(JSON.parse(localStorage.getItem("user")).phone);
+    const [user, setUser] = useState();
+
     const [dialogIsOpen, setDialogIsOpen] = React.useState(false)
     const openDialog = () => setDialogIsOpen(true)
     const closeDialog = () => setDialogIsOpen(false)
@@ -26,46 +23,50 @@ function Signup() {
         // Prevent page reload
         event.preventDefault();
         try {
-            const res = await register({
+            const res = await editUserInfo({
+                user_id: JSON.parse(localStorage.getItem("user")).id,
                 first_name: firstName,
                 last_name: lastName,
                 email: email,
                 username: username,
                 phone: phone,
-                password: password,
-                password_confirm: passwordConfirm,
                 district: district,
                 city: city,
             });
             setUserData(res.data);
-            setAuth(true);
-            // console.log(res);
-        } catch (error) {
-            console.log(Object.values(error.response.data.errors)[0][0]);
-            setError(Object.values(error.response.data.errors)[0][0])
+            
+            console.log(res);
             openDialog()
+        } catch (error) {
+            console.log(error);
         }
     };
-    if (auth) {
-        return <Navigate replace to="/home" />;
-    }
+    useEffect(() => {
+      setUser(JSON.parse(localStorage.getItem("user")))
+      console.log(user)
+    }, [])
+    
     return (
         <div>
-            <Navbar />
-            <AlertDialog open={dialogIsOpen} onClose={closeDialog} text={error} title= "Registration Failed"/>
-            <div className="row p-5">
-                <div className="col-lg-12">
-                    <nav className="breadcrumb bg-light">
-                        <span className="breadcrumb-item text-dark" href="#">
-                            Home
-                        </span>
-                        {/* <a className="breadcrumb-item text-dark" href="#">
+            <AlertDialog open={dialogIsOpen} onClose={closeDialog} text="Your information has been updated" title= "Success"/>
+            <div className="container-fluid">
+                <div className="row p-5">
+                    <div className="col-lg-12">
+                        <nav className="breadcrumb bg-light">
+                            <span
+                                className="breadcrumb-item text-dark"
+                                href="#"
+                            >
+                                Home
+                            </span>
+                            {/* <a className="breadcrumb-item text-dark" href="#">
                                 Shop
                             </a> */}
-                        <span className="breadcrumb-item active">
-                            Sign Up - Create A New Account
-                        </span>
-                    </nav>
+                            <span className="breadcrumb-item active">
+                                Edit Profile
+                            </span>
+                        </nav>
+                    </div>
                 </div>
             </div>
             <form className="row" onSubmit={handleSubmit}>
@@ -77,6 +78,7 @@ function Signup() {
                                 type="text"
                                 className="form-control"
                                 id="first-name"
+                                defaultValue={(JSON.parse(localStorage.getItem("user")).first_name)}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 required
                             />
@@ -87,6 +89,7 @@ function Signup() {
                                 type="text"
                                 className="form-control"
                                 id="last-name"
+                                defaultValue={(JSON.parse(localStorage.getItem("user")).last_name)}
                                 onChange={(e) => setLastName(e.target.value)}
                                 required
                             />
@@ -98,6 +101,7 @@ function Signup() {
                             <input
                                 type="email"
                                 className="form-control"
+                                defaultValue={(JSON.parse(localStorage.getItem("user")).email)}
                                 id="inputEmail4"
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -110,6 +114,7 @@ function Signup() {
                             <input
                                 type="phone"
                                 className="form-control"
+                                defaultValue={(JSON.parse(localStorage.getItem("user")).phone)}
                                 id="phone"
                                 onChange={(e) => setPhone(e.target.value)}
                                 required
@@ -120,6 +125,7 @@ function Signup() {
                             <input
                                 type="text"
                                 className="form-control"
+                                defaultValue={(JSON.parse(localStorage.getItem("user")).username)}
                                 id="user-name"
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
@@ -133,7 +139,7 @@ function Signup() {
                                 id="inputState"
                                 required
                                 className="form-control"
-                                defaultValue="Beirut"
+                                defaultValue={(JSON.parse(localStorage.getItem("user")).district)}
                                 onChange={(e) => setDistrict(e.target.value)}
                             >
                                 <option>Beirut</option>
@@ -151,39 +157,14 @@ function Signup() {
                                 type="text"
                                 className="form-control"
                                 id="inputCity"
+                                defaultValue={(JSON.parse(localStorage.getItem("user")).city)}
                                 onChange={(e) => setCity(e.target.value)}
                                 required
                             />
                         </div>
                     </div>
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="inputPassword4">Password</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                id="inputPassword4"
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="form-group col-md-6">
-                            <label htmlFor="confirm-password">
-                                Confirm Password
-                            </label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                id="confirm-password"
-                                onChange={(e) =>
-                                    setPasswordConfirm(e.target.value)
-                                }
-                                required
-                            />
-                        </div>
-                    </div>
                     <button type="submit" className="btn btn-primary">
-                        Register
+                        Update Info
                     </button>
                 </div>
             </form>
@@ -191,4 +172,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default EditProfile;
