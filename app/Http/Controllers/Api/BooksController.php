@@ -54,7 +54,7 @@ class BooksController extends Controller
                 'category' => $request->category,
                 'school' => $request->school,
                 'class' => $request->class,
-                'education_year' => $request->education_year,
+                'education_year' => $request->educationYear,
                 'status' => $request->status,
             ]);
 
@@ -186,6 +186,8 @@ class BooksController extends Controller
                 'title' => $buyer->first_name ." ". $buyer->last_name ." bought " .$book->title ." for $". $book->price,
                 'status' => "purchase"
             ]);
+            $book = Book::where('id', $request->book_id)->first();
+
             return response()->json([
                 'text' =>  $buyer->first_name ." ". $buyer->last_name ." bought " .$book->title . " from " . $seller->first_name . " " . $seller->last_name . " for $". $book->price,
                 'purchased' => $purchase,
@@ -202,5 +204,42 @@ class BooksController extends Controller
             ], 500);
         }
         
+    }
+
+    public function deleteBook(Request $request) {
+        try{
+            $delete=Book::where('id',$request->id)->delete();
+            return response()->json([
+                'status' => true,
+                'message' => "Book deleted successfully.",
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function allBooks(Request $request) {
+        try{
+            $books=Book::all();
+            $books = DB::table('books')
+            ->select('*','books.id as book_id')
+            ->join('users','users.id','=','books.seller_id')
+            ->get();
+            return response()->json([
+                'status' => true,
+                'books' => $books,
+                'message' => "Book deleted successfully.",
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 }

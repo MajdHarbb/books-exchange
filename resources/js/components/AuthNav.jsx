@@ -2,28 +2,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
-import SettingsIcon from '@mui/icons-material/Settings';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import PersonIcon from '@mui/icons-material/Person';
-import HttpsIcon from '@mui/icons-material/Https';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import SettingsIcon from "@mui/icons-material/Settings";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import PersonIcon from "@mui/icons-material/Person";
+import HttpsIcon from "@mui/icons-material/Https";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 function AuthNav() {
     const [auth, setAuth] = useState(true);
+    const [admin, setAdmin] = useState(
+        JSON.parse(localStorage.getItem("user") != null && localStorage.getItem("user")).role == "admin" ? true : false
+    );
     const removeUser = () => {
-            window.localStorage.clear();
-            setAuth(false)
-    }
+        window.localStorage.clear();
+        setAuth(false);
+    };
     if (!auth) {
         return <Navigate replace to="/login" />;
     }
     return (
         <div>
             <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
-                <Link
-                    role="button"
-                    to="/home" className="navbar-brand">
-                    <img src='logo-nobg-cr.png' height="45" width="100" />
+                <Link role="button" to="/home" className="navbar-brand">
+                    <img src="logo-nobg-cr.png" height="45" width="100" />
                 </Link>
                 <button
                     className="navbar-toggler"
@@ -41,28 +42,72 @@ function AuthNav() {
                     id="navbar-list-8"
                 >
                     <ul className="navbar-nav">
-                    <li className="nav-item">
-                            <Link className="nav-link" to="home">Home <span className="sr-only">(current)</span></Link>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="home">
+                                Home <span className="sr-only">(current)</span>
+                            </Link>
+                        </li>
+                        {
+                            admin ? (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="users">
+                                        User List <span className="sr-only">(current)</span>
+                                    </Link>
+                                </li>
+                            ) : null
+                        }
+                        {
+                            admin ? (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="all-books">
+                                        Books List <span className="sr-only">(current)</span>
+                                    </Link>
+                                </li>
+                            ) : null
+                        }
+                        {
+                            admin ? (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="activity">
+                                        Activity <span className="sr-only">(current)</span>
+                                    </Link>
+                                </li>
+                            ) : null
+                        }
+                        <li className="nav-item">
+                            <Link className="nav-link" to="sell-books">
+                                Sell Books{" "}
+                                <span className="sr-only">(current)</span>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="sell-books">Sell Books <span className="sr-only">(current)</span></Link>
+                            <Link className="nav-link" to="my-books">
+                                My Books{" "}
+                                <span className="sr-only">(current)</span>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="my-books">My Books <span className="sr-only">(current)</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/purchased">Purchased <span className="sr-only">(current)</span></Link>
+                            <Link className="nav-link" to="/purchased">
+                                Purchased{" "}
+                                <span className="sr-only">(current)</span>
+                            </Link>
                         </li>
                     </ul>
                     <div className="right-side d-flex">
                         <form className="form-inline">
-                            <label className="white-text">Hello {window.localStorage.getItem("first_name")}</label>
+                            <label className="white-text">
+                                Hello{" "}
+                                {window.localStorage.getItem("first_name")}{" "}
+                                {admin ? "(admin)" : ""}
+                            </label>
                         </form>
-                        
+
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                    
-                                <Link className="nav-link" to="notifications"><NotificationsIcon /> <span className="sr-only">(current)</span></Link>
+                                <Link className="nav-link" to="notifications">
+                                    <NotificationsIcon />{" "}
+                                    <span className="sr-only">(current)</span>
+                                </Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <a
@@ -83,10 +128,30 @@ function AuthNav() {
                                     {/* <a className="dropdown-item" href="#">
                                         Dashboard
                                     </a> */}
-                                    <Link className="dropdown-item" to="edit-profile"><PersonIcon/> Edit Profile Info <span className="sr-only">(current)</span></Link>
-                                    <Link className="dropdown-item" to="change-password"><HttpsIcon/> Change Password <span className="sr-only">(current)</span></Link>
-                                    <a className="dropdown-item" href="#" onClick={removeUser}>
-                                       <ExitToAppIcon/> Log Out
+                                    <Link
+                                        className="dropdown-item"
+                                        to="edit-profile"
+                                    >
+                                        <PersonIcon /> Edit Profile Info{" "}
+                                        <span className="sr-only">
+                                            (current)
+                                        </span>
+                                    </Link>
+                                    <Link
+                                        className="dropdown-item"
+                                        to="change-password"
+                                    >
+                                        <HttpsIcon /> Change Password{" "}
+                                        <span className="sr-only">
+                                            (current)
+                                        </span>
+                                    </Link>
+                                    <a
+                                        className="dropdown-item"
+                                        href="#"
+                                        onClick={removeUser}
+                                    >
+                                        <ExitToAppIcon /> Log Out
                                     </a>
                                 </div>
                             </li>

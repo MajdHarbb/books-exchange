@@ -48,4 +48,24 @@ export async function editUserInfo(data){
 export async function editPassword(data){
     return await axiosClient.post('/edit-password', data)
 }
+
+export async function deleteBook(data){
+    return await axiosClient.post('/delete-book', data)
+}
+
+export async function activity(data){
+    return await axiosClient.post('/activity', data)
+}
+
+export async function allUsers(data){
+    return await axiosClient.post('/all-users', data)
+}
+
+export async function deleteUser(data){
+    return await axiosClient.post('/delete-user', data)
+}
+
+export async function allBooks(data){
+    return await axiosClient.post('/all-books', data)
+}
     

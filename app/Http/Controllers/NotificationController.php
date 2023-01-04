@@ -26,4 +26,20 @@ class NotificationController extends Controller
         }
         
     }
+
+    public function activity(Request $request) {
+        try {
+            $notifications = Notification::all();
+            return response()->json([
+                'status' => true,
+                'notifications' => $notifications
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+        
+    }
 }

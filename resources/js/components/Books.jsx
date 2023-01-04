@@ -8,6 +8,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import { Link } from "react-router-dom";
 import AlertDialog from "./AlertDialog";
 import SearchIcon from "@mui/icons-material/Search";
+import NoBooks from "./NoBooks";
 function Books() {
     const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
     const openDialog = () => setDialogIsOpen(true);
@@ -21,7 +22,7 @@ function Books() {
     const fetchBooks = async () => {
         try {
             const res = await getBooks();
-            console.log(res.data.books);
+            console.log('books here',res.data.books);
             setLoading(false);
             setBooks(res.data.books);
             setFilteredBooks(res.data.books);
@@ -32,7 +33,7 @@ function Books() {
 
     const search = (e) => {
         setFilteredBooks(
-            books.filter((book) =>
+            books.filter((book) => 
                 book.title.toLowerCase().includes(e.toLowerCase())
             )
         );
@@ -143,40 +144,50 @@ function Books() {
                                                     View My Book
                                                 </Link>
                                             ) : localStorage.getItem("user") !=
-                                            null ? (
+                                              null ? (
+                                                book.price == 0 ? (
+                                                    <Link
+                                                        className="btn btn-primary"
+                                                        to={
+                                                            `/purchase-book/` +
+                                                            book.book_id
+                                                        }
+                                                    >
+                                                        Get For Free
+                                                    </Link>
+                                                ) : (
+                                                    <Link
+                                                        className="btn btn-primary"
+                                                        to={
+                                                            `/purchase-book/` +
+                                                            book.book_id
+                                                        }
+                                                    >
+                                                        Buy Book{" "}
+                                                        {`$${book.price}`}
+                                                    </Link>
+                                                )
+                                            ) : (
                                                 <Link
                                                     className="btn btn-primary"
-                                                    onClick={() => console.log("hey")}
-                                                    to={
-                                                        `/purchase-book/` +
-                                                        book.book_id
+                                                    onClick={() =>
+                                                        localStorage.setItem(
+                                                            "book_id",
+                                                            book.book_id
+                                                        )
                                                     }
+                                                    to={`/login`}
                                                 >
-                                                    Buy Book {`$${book.price}`}
+                                                    Login to buy{" "}
+                                                    {`$${book.price}`}
                                                 </Link>
-                                            ) : 
-                                                <Link
-                                                    className="btn btn-primary"
-                                                    onClick={() => localStorage.setItem("book_id", book.book_id)}
-                                                    to={
-                                                        `/login`
-                                                    }
-                                                >
-                                                    Login to buy {`$${book.price}`}
-                                                </Link>
-                                            }
+                                            )}
                                         </div>
                                     </div>
                                 );
                             })
                         ) : (
-                                <div className="col-lg-12">
-                                    <nav className="breadcrumb bg-light" style={{minHeight: "200px"}}>
-                                        <div className="mx-auto my-auto">
-                                            <h3>Sorry, no books available</h3>
-                                        </div>
-                                    </nav>
-                                </div>
+                            <NoBooks/>
                         )}
                     </div>
                 </div>

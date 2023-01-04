@@ -44,7 +44,7 @@ function PurchaseBook() {
     };
     useEffect(() => {
         console.log(bookId);
-        window.localStorage.removeItem('book_id');
+        window.localStorage.removeItem("book_id");
         fetchBooks();
     }, []);
     if (purchasedCompleted) {
@@ -123,15 +123,26 @@ function PurchaseBook() {
                                 </p> */}
                                 {JSON.parse(localStorage.getItem("user")).id !=
                                 book.seller_id ? (
+                                    book.status == null ? (
+                                        <div className="d-flex align-items-center mb-4 pt-2">
+                                            <button
+                                                className="btn btn-primary px-3"
+                                                onClick={purchase}
+                                            >
+                                                <i className="fa fa-shopping-cart mr-1" />
+                                                Purchase Book
+                                            </button>
+                                        </div>
+                                    ) : 
                                     <div className="d-flex align-items-center mb-4 pt-2">
-                                        <button
-                                            className="btn btn-primary px-3"
-                                            onClick={purchase}
-                                        >
-                                            <i className="fa fa-shopping-cart mr-1" />
-                                            Purchase Book
-                                        </button>
-                                    </div>
+                                            <button
+                                                className="btn btn-primary px-3"
+                                                disabled={true}
+                                            >
+                                                <i className="fa fa-shopping-cart mr-1" />
+                                                Already Owned
+                                            </button>
+                                        </div>
                                 ) : null}
                             </div>
                         </div>

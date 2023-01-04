@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('district');
             $table->string('city');
+            $table->string('role')->default('user');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

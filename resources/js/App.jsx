@@ -15,6 +15,9 @@ import Notifications from './pages/Auth/Notifications';
 import EditProfile from './pages/Auth/EditProfile';
 import ChangePassword from './pages/Auth/ChangePassword';
 import EditPassword from './pages/Auth/EditPassword';
+import UserList from './pages/Auth/UserList';
+import AllBooks from './pages/Auth/AllBooks';
+import Activity from './pages/Auth/Activity';
 function app() {
   return (
     <>
@@ -31,6 +34,9 @@ function app() {
           <Route path='/edit-profile' element={<EditProfile />} />
           <Route path='/change-password' element={<EditPassword />} />
           <Route path="/purchase-book/:bookId" element={<PurchaseBook />} />
+          <Route path="/users" element={<UserList />} />
+          <Route path="/all-books" element={<AllBooks />} />
+          <Route path="/activity" element={<Activity />} />
         </Route>
         
       </Routes>

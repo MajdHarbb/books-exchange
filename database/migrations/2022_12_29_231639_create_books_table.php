@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('buyer_id')->nullable();
-            $table->foreign('seller_id')->nullable()->references('id')->on('users');
-            $table->foreign('buyer_id')->references('id')->on('users');
+            $table->foreign('seller_id')->nullable()->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('buyer_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->string('author')->nullable();
             $table->string('publisher')->nullable();

@@ -2,7 +2,14 @@ import React from "react";
 import { createBook } from "../../helpers/api.js";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import AlertDialog from "../../components/AlertDialog.jsx";
 function Sellbook() {
+    const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
+    const openDialog = () => setDialogIsOpen(true);
+    const closeDialog = () => setDialogIsOpen(false);
+    const [text, setText] = useState("Your book is ready for sale!");
+    const [title, setTitle] = useState("Book posted successfully");
+
     const [bookTitle, setbookTitle] = useState("");
     const [authorName, setauthorName] = useState("");
     const [publisher, setPublisher] = useState("");
@@ -13,7 +20,7 @@ function Sellbook() {
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("Upload Book Image (PNG, JPEG, JPG)");
     const [imageBase, setImageBase] = useState("");
-    const [sellingCompleted, setSellingCompleted] = useState(false)
+    const [sellingCompleted, setSellingCompleted] = useState(false);
 
     const handleImage = async (e) => {
         const file = e.target.files[0];
@@ -62,21 +69,31 @@ function Sellbook() {
                 status: "",
             });
             console.log(res);
-            setSellingCompleted(true)
+            // setSellingCompleted(true);
+            openDialog()
         } catch (error) {
             console.log(error);
         }
     };
-    if(sellingCompleted){
+    if (sellingCompleted) {
         return <Navigate replace to="/my-books" />;
     }
     return (
         <div>
+            <AlertDialog
+                open={dialogIsOpen}
+                onClose={closeDialog}
+                text={text}
+                title={title}
+            />
             <div className="container-fluid">
                 <div className="row p-5">
                     <div className="col-lg-12">
                         <nav className="breadcrumb bg-light">
-                            <span className="breadcrumb-item text-dark" href="#">
+                            <span
+                                className="breadcrumb-item text-dark"
+                                href="#"
+                            >
                                 Home
                             </span>
                             {/* <a className="breadcrumb-item text-dark" href="#">
@@ -125,13 +142,17 @@ function Sellbook() {
                     </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="eduction-year">Education Year</label>
+                            <label htmlFor="eduction-year">
+                                Education Year
+                            </label>
                             <select
                                 id="eduction-year"
                                 required
                                 className="form-control"
                                 defaultValue="First Year"
-                                onChange={(e) => seteducationYear(e.target.value)}
+                                onChange={(e) =>
+                                    seteducationYear(e.target.value)
+                                }
                             >
                                 <option>Grade One</option>
                                 <option>Grade Two</option>
@@ -205,8 +226,6 @@ function Sellbook() {
                                 <option>Arabic</option>
                                 <option>English</option>
                                 <option>Computer</option>
-
-
                             </select>
                         </div>
                         <div className="form-group col-md-6">

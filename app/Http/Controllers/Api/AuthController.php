@@ -171,4 +171,40 @@ class AuthController extends Controller
         }
         
     }
+
+    public function allUsers(Request $request) {
+        try {
+
+            $user = User::where('role', '!=', 'admin')->get();
+            
+            return response()->json([
+                'status' => true,
+                'user' => $user,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+        
+    }
+
+    public function deleteUser(Request $request) {
+        try {
+
+            $delete=User::where('id',$request->id)->delete();
+            return response()->json([
+                'status' => true,
+                'message' => "Book deleted successfully.",
+            ], 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+        
+    }
 }

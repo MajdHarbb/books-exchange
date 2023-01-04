@@ -1,15 +1,15 @@
 import React from "react";
-import { getMyNotifications } from "../../helpers/api";
+import { activity } from "../../helpers/api";
 import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import NoNotifications from "../../components/NoNotifications";
 
-function Notifications() {
+function Activity() {
     const [notifications, setNotifications] = useState();
     const [loading, setLoading] = useState(true);
     const fetchNotifications = async () => {
         try {
-            const res = await getMyNotifications({
+            const res = await activity({
                 user_id: JSON.parse(localStorage.getItem("user")).id,
             });
             console.log(res.data.notifications);
@@ -38,11 +38,7 @@ function Notifications() {
                                 Shop
                             </a> */}
                             <span className="breadcrumb-item active">
-                                {
-                                    JSON.parse(localStorage.getItem("user"))
-                                        .first_name
-                                }
-                                's Notification
+                                Users activity - Buy and sell log
                             </span>
                         </nav>
                     </div>
@@ -82,4 +78,4 @@ function Notifications() {
     );
 }
 
-export default Notifications;
+export default Activity;
