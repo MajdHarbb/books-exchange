@@ -75,3 +75,16 @@ body{
     pointer-events: none;
     color: #aaa;
 }
+
+.carousel-custom{
+    bottom: 50% !important;
+}
+
+.car-h{
+    /* max-height: 300px; */
+}
+.with-stroke{
+    font-size: 50px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}

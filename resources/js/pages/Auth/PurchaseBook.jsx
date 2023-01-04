@@ -44,6 +44,7 @@ function PurchaseBook() {
     };
     useEffect(() => {
         console.log(bookId);
+        window.localStorage.removeItem('book_id');
         fetchBooks();
     }, []);
     if (purchasedCompleted) {

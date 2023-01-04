@@ -10,10 +10,10 @@ import AlertDialog from "./AlertDialog";
 import SearchIcon from "@mui/icons-material/Search";
 function Books() {
     const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
-
     const openDialog = () => setDialogIsOpen(true);
-
     const closeDialog = () => setDialogIsOpen(false);
+    const [text, setText] = useState();
+    const [title, setTitle] = useState();
 
     const [books, setBooks] = useState();
     const [filteredBooks, setFilteredBooks] = useState();
@@ -142,9 +142,11 @@ function Books() {
                                                 >
                                                     View My Book
                                                 </Link>
-                                            ) : (
+                                            ) : localStorage.getItem("user") !=
+                                            null ? (
                                                 <Link
                                                     className="btn btn-primary"
+                                                    onClick={() => console.log("hey")}
                                                     to={
                                                         `/purchase-book/` +
                                                         book.book_id
@@ -152,7 +154,17 @@ function Books() {
                                                 >
                                                     Buy Book {`$${book.price}`}
                                                 </Link>
-                                            )}
+                                            ) : 
+                                                <Link
+                                                    className="btn btn-primary"
+                                                    onClick={() => localStorage.setItem("book_id", book.book_id)}
+                                                    to={
+                                                        `/login`
+                                                    }
+                                                >
+                                                    Login to buy {`$${book.price}`}
+                                                </Link>
+                                            }
                                         </div>
                                     </div>
                                 );

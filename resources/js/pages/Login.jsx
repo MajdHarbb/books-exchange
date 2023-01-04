@@ -10,6 +10,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [auth, setAuth] = useState(false);
+    const [authWithBook, setAuthWithBook] = useState(false);
     const [error, setError] = useState("Invalid Credentails");
 
     const [dialogIsOpen, setDialogIsOpen] = React.useState(false);
@@ -23,7 +24,11 @@ function Login() {
             const res = await signin({ email: email, password: password });
             // console.log(res);
             setUserData(res.data);
-            setAuth(true);
+            if(localStorage.getItem("book_id") != null){
+                setAuthWithBook(true)
+            } else {
+                setAuth(true);
+            }
         } catch (error) {
             console.log(error.response.data.message);
             setError(error.response.data.message);
@@ -33,6 +38,9 @@ function Login() {
 
     if (auth) {
         return <Navigate replace to="/home" />;
+    }
+    if (authWithBook) {
+        return <Navigate replace to={`/purchase-book/` + localStorage.getItem("book_id")} />;
     }
     return (
         <div>
