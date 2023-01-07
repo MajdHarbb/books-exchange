@@ -149,7 +149,7 @@ function Sellbook() {
                                 id="eduction-year"
                                 required
                                 className="form-control"
-                                defaultValue="First Year"
+                                defaultValue="Grade One"
                                 onChange={(e) =>
                                     seteducationYear(e.target.value)
                                 }
@@ -166,9 +166,6 @@ function Sellbook() {
                                 <option>Grade Ten</option>
                                 <option>Grade Eleven</option>
                                 <option>Grade Twelve</option>
-                                <option>University First Year</option>
-                                <option>University Second Year</option>
-                                <option>University Third Year</option>
                             </select>
                         </div>
                         <div className="form-group col-md-6">
