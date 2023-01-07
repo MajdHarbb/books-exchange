@@ -4,11 +4,11 @@ import _ from "lodash";
 function Navbar() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link
                     role="button"
                     to="/" className="navbar-brand">
-                    <img src='logo-nobg-cr.png' height="45" width="100" />
+                    <img src='b-logo.png' height="45" width="150" />
                 </Link>
                 <button
                     className="navbar-toggler"
@@ -34,15 +34,17 @@ function Navbar() {
                             >
                                 Home<span className="sr-only"></span>
                             </Link>
-                            {/* <a className="nav-link" href="#">
-                                Home <span className="sr-only"></span>
-                            </a> */}
                         </li>
-                        {/* <li className="nav-item">
+                        <li className="nav-item active">
                             <a className="nav-link" href="#">
-                                Link
+                                About Us
                             </a>
-                        </li> */}
+                        </li>
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#">
+                                Contact
+                            </a>
+                        </li>
                         {/* <li className="nav-item dropdown">
                             <a
                                 className="nav-link dropdown-toggle"

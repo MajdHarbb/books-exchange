@@ -27,8 +27,7 @@ function Carousel() {
                 <div className="carousel-item active">
                     <img
                         className="d-block w-100"
-                        src="https://i0.wp.com/stanzaliving.wpcomstaging.com/wp-content/uploads/2022/04/d7519-library-in-chennai.jpg?fit=1000%2C618&ssl=1"
-                        alt="First slide"
+                        src="./4.jpeg"                        alt="First slide"
                     />
                     <div className="carousel-custom carousel-caption">
                         <h1 className="with-stroke">
@@ -53,7 +52,7 @@ function Carousel() {
                 <div className="carousel-item">
                     <img
                         className="d-block w-100"
-                        src="https://hips.hearstapps.com/hmg-prod/images/minalima-wizarding-books-wallpaper-detail-1-1569411118.jpg"
+                        src="http://hips.hearstapps.com/hmg-prod/images/minalima-wizarding-books-wallpaper-detail-1-1569411118.jpg"
                         alt="First slide"
                     />
                     <div className="carousel-custom carousel-caption">
@@ -77,8 +76,7 @@ function Carousel() {
                 <div className="carousel-item">
                     <img
                         className="d-block w-100"
-                        src="https://static01.nyt.com/images/2017/05/11/t-magazine/bookstore-slide-2MCD/bookstore-slide-2MCD-superJumbo.jpg"
-                        alt="First slide"
+                        src="./3.jpeg"                        alt="First slide"
                     />
                     <div className="carousel-custom carousel-caption">
                         <h1 className="with-stroke">Find Free Books</h1>

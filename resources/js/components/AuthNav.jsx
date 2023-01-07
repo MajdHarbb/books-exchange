@@ -24,7 +24,7 @@ function AuthNav() {
         <div>
             <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
                 <Link role="button" to="/home" className="navbar-brand">
-                    <img src="logo-nobg-cr.png" height="45" width="100" />
+                    <img src="b-logo.png" height="45" width="100" />
                 </Link>
                 <button
                     className="navbar-toggler"
