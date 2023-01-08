@@ -42,7 +42,7 @@ function Navbar() {
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link" href="/#contact-us">
-                                Contact
+                                Contact Us
                             </a>
                         </li>
                         {/* <li className="nav-item dropdown">

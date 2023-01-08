@@ -50,7 +50,7 @@ function Landing() {
                                     For any recommendations please contact us on
                                     our gmail(ziad@gmail.com), or call us on the
                                     following number (0096171400433). Thanks for
-                                    using our website.Regardless!
+                                    using our website.
                                 </p>
                             </div>
 
