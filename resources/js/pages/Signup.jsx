@@ -69,7 +69,7 @@ function Signup() {
                 </div>
             </div>
             <form className="row" onSubmit={handleSubmit}>
-                <div className="mx-auto">
+                <div className="mx-auto p-5 bg-light">
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="first-name">First Name</label>

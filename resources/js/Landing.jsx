@@ -21,7 +21,7 @@ function Landing() {
                                     width="500"
                                 />
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-2" id="about-us">
                                 <h1> About Us</h1>
                                 <p className="text-justify">
                                     Hello beloved users in this website we are
@@ -40,7 +40,7 @@ function Landing() {
                 </div>
             </div>
 
-            <div className="container-fluid">
+            <div className="container-fluid" id="contact-us">
                 <div className="row p-5">
                     <div className="col-lg-12">
                         <div className="d-flex">

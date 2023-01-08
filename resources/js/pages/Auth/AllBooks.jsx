@@ -3,6 +3,7 @@ import { allBooks, deleteBook, deleteUser } from "../../helpers/api";
 import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import NoUsers from "../../components/NoUsers";
+import NoBooks from "../../components/NoBooks";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AlertDialog from "../../components/AlertDialog";
@@ -84,7 +85,7 @@ function AllBooks() {
                                 Shop
                             </a> */}
                             <span className="breadcrumb-item active">
-                                Users List - All Users
+                                Books List - All Books
                             </span>
                         </nav>
                     </div>
@@ -150,7 +151,7 @@ function AllBooks() {
                             </tbody>
                         </table>
                     ) : (
-                        <NoUsers />
+                        <NoBooks />
                     )}
                 </div>
             )}

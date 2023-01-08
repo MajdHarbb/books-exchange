@@ -71,8 +71,8 @@ function Login() {
                     </div>
                 </div>
                 <form className="row" onSubmit={handleSubmit}>
-                    <div className="mx-auto">
-                        <div className="form-row">
+                    <div className="mx-auto p-5 bg-light">
+                        <div className="form-row ">
                             <div className="form-group col-md-12">
                                 <label htmlFor="inputEmail4">Email</label>
                                 <input
