@@ -56,7 +56,7 @@ function Carousel() {
                         alt="First slide"
                     />
                     <div className="carousel-custom carousel-caption">
-                        <h1 className="with-stroke">Sell and buy books</h1>
+                        <h1 className="with-stroke">Sell and buy used books</h1>
                         <Link
                             role="button"
                             className="btn btn-primary active mx-2 mx-2"
@@ -79,7 +79,7 @@ function Carousel() {
                         src="./3.jpeg"                        alt="First slide"
                     />
                     <div className="carousel-custom carousel-caption">
-                        <h1 className="with-stroke">Find Free Books</h1>
+                        <h1 className="with-stroke">Find Free Used Books</h1>
                         <Link
                             role="button"
                             className="btn btn-primary active mx-2"

@@ -2,6 +2,8 @@ import React from "react";
 import Books from "./components/Books";
 import Carousel from "./components/Carousel";
 import Navbar from "./components/Navbar";
+import EmailIcon from '@mui/icons-material/Email';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 function Landing() {
     return (
@@ -47,11 +49,13 @@ function Landing() {
                             <div className="col-lg-6 mt-2">
                                 <h1> Contact us</h1>
                                 <p className="text-justify">
-                                    For any recommendations please contact us on
-                                    our gmail(ziad@gmail.com), or call us on the
-                                    following number (0096171400433). Thanks for
-                                    using our website.
+                                    For any recommendations please reach us on the
+                                    following :
                                 </p>
+                                <a href="mailto:Dghaishz@gmail.com"><EmailIcon/>Dghaishz@gmail.com</a>
+                                <br/>
+                                <br/>
+                                <a href="0096171400433"><LocalPhoneIcon/>961 71 400 433</a>
                             </div>
 
                             <div className="col-lg-6 m-2">
