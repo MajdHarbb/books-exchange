@@ -183,7 +183,7 @@ class BooksController extends Controller
                 'book_id' => $request->book_id,
                 'seller_id' => $request->seller_id,
                 'buyer_id' => $request->buyer_id,
-                'title' => $buyer->first_name ." ". $buyer->last_name ." bought " .$book->title ." for $". $book->price,
+                'title' => $buyer->first_name ." ". $buyer->last_name ." bought " .$book->title ." from " . $seller->first_name . " " . $seller->last_name ." for $". $book->price,
                 'status' => "purchase"
             ]);
             $book = Book::where('id', $request->book_id)->first();
